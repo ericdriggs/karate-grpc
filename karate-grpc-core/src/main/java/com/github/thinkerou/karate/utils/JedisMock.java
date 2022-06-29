@@ -4,11 +4,7 @@ import com.github.fppt.jedismock.RedisServer;
 
 import java.io.IOException;
 
-/**
- *
- * A singleton in-memory Redis server
- */
-public class InMemoryRedisServer {
+public class JedisMock {
 
     private volatile static RedisServer redisServer;
 
@@ -21,7 +17,7 @@ public class InMemoryRedisServer {
         if (redisServer != null) {
             return;
         }
-        synchronized (InMemoryRedisServer.class) {
+        synchronized (JedisMock.class) {
             if (redisServer != null) {
                 return;
             }
@@ -34,4 +30,5 @@ public class InMemoryRedisServer {
             }
         }
     }
+
 }

@@ -28,7 +28,7 @@ public final class RedisHelper {
             if (jedis != null) {
                 return;
             }
-            RedisServer redisServer = InMemoryRedisServer.getRedisServer();
+            RedisServer redisServer = JedisMock.getRedisServer();
             jedis = new Jedis(redisServer.getHost(), redisServer.getBindPort(), REDIS_TIMEOUT);
         }
     }
