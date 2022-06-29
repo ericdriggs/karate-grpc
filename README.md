@@ -18,12 +18,6 @@ Prefer to use Maven:
 $ # compile the whole project
 $ mvn clean compile package -Dmaven.test.skip=true
 $
-$ # start redis-server, first need to install it
-$ redis-server
-$
-$ # generate protobuf descriptor sets and put to redis
-$ cd karate-grpc-helper && mvn exec:java -Dexec.mainClass=com.github.thinkerou.karate.helper.Main
-$
 $ # test it
 $ cd karate-grpc-demo
 $ # run all tests
@@ -253,7 +247,9 @@ Output JSON string also like:
 
 So, use Redis to save descriptor sets which every generate.
 
-Indicates redis address and ask `karate-karate-core` to use redis, for [example](karate-grpc-demo/src/test/java/demo/helloworld/helloworld-new.feature):
+Uses jedis-mock so you don't even need to install Redis.
+
+ [example](karate-grpc-demo/src/test/java/demo/helloworld/helloworld-new.feature):
 
 ```
 Feature: grpc helloworld example by grpc dynamic client
