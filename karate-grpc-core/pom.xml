@@ -84,6 +84,11 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.fppt</groupId>
+            <artifactId>jedis-mock</artifactId>
+            <version>1.0.3</version>
+        </dependency>
     </dependencies>
 
 </project>

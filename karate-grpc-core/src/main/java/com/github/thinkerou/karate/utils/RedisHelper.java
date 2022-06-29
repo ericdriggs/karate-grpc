@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import com.github.fppt.jedismock.RedisServer;
 import com.github.thinkerou.karate.constants.RedisParams;
 
 import redis.clients.jedis.Jedis;
@@ -17,14 +18,23 @@ public final class RedisHelper {
 
     private static final int REDIS_TIMEOUT = 3000;
 
-    private static Jedis jedis;
+    private static volatile Jedis jedis;
 
-    public static RedisHelper create(String host, int port) {
-        return new RedisHelper(host, port);
+    private static void init() {
+        if (jedis != null) {
+            return;
+        }
+        synchronized (RedisHelper.class) {
+            if (jedis != null) {
+                return;
+            }
+            RedisServer redisServer = InMemoryRedisServer.getRedisServer();
+            jedis = new Jedis(redisServer.getHost(), redisServer.getBindPort(), REDIS_TIMEOUT);
+        }
     }
 
-    RedisHelper(String host, int port) {
-        jedis = new Jedis(host, port, REDIS_TIMEOUT);
+    public RedisHelper() {
+        init();
     }
 
     public Boolean putDescriptorSets(Path descriptorPath) {

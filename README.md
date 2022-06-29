@@ -261,7 +261,7 @@ Feature: grpc helloworld example by grpc dynamic client
   Background:
     * def Client = Java.type('com.github.thinkerou.karate.GrpcClient')
     * def client = Client.create('localhost', 50051)
-    * def client = client.redis('localhost', 6379)
+    * def client = client.redis()
 
   Scenario: do it
     * string payload = read('helloworld.json')
@@ -277,7 +277,7 @@ Feature: grpc helloworld example by grpc dynamic client
     * match response[0].details == 'Details Hello thinkerou in BeiJing'
 ```
 
-Only use the line `* def client = client.redis('localhost', 6379)` it's OK!
+Only use the line `* def client = client.redis()` it's OK!
 
 **TODO:**
 

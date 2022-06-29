@@ -1,5 +1,6 @@
 package demo;
 
+import com.github.thinkerou.karate.helper.Main;
 import com.intuit.karate.Results;
 import com.intuit.karate.Runner;
 import net.masterthought.cucumber.Configuration;
@@ -33,6 +34,7 @@ public abstract class TestBase {
             server = new ServerStart();
         }
         server.startServer();
+        Main.putTestDescriptorSetsToRedis();
     }
 
     @Test
